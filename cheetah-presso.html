@@ -40,7 +40,6 @@
       th {
         background-color: #e6ddd6;
         border-bottom: 1px solid #e6ddd6;
-        color: #5e4935;
       }
       th:not(:last-child),
       td:not(:last-child) {
@@ -48,6 +47,7 @@
       }
       th,
       td {
+        color: #5e4935;
         padding: 0.4rem;
         .link-btn {
           background-color: #a48b74;
@@ -72,7 +72,7 @@
         position: relative;
         width: 100%;
         max-width: 800px;
-        margin-top: 20px;
+        margin-top: 30px;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -83,7 +83,8 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        width: 60%;
+        width: 70%;
+        text-align: left;
         align-self: flex-start;
         .code {
           color: white;
@@ -106,7 +107,7 @@
       }
 
       .info-container {
-        background-color: #f5f5f5;
+        box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.15);
         padding: 30px;
         border-radius: 20px;
         text-align: left;
@@ -453,7 +454,7 @@
           nameWrapperDiv.innerHTML = `
         <div id="${bean.code}" class="code">${bean.code}</div>
         <h2 class="name">${bean.name}</h2>
-        <a class="guide-btn" href="#choice-guide"><button>가이드 보러가기</button></a>
+        <a class="guide-btn" href="#choice-guide"><button>GUIDE</button></a>
       `;
           const infoContainerDiv = document.createElement("div");
           infoContainerDiv.className = "info-container";
