@@ -4,20 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cheetah Presso</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
     <style>
-      @font-face {
-        font-family: "Pretendard-Regular";
-        src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-          format("woff");
-        font-style: normal;
-      }
-
       body {
-        font-family: "Pretendard-Regular", sans-serif;
+        font-family: "Pretendard", sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
         padding: 20px;
+      }
+
+      h1,
+      h2 {
+        color: #5e4935;
       }
 
       .guide-wrapper {
@@ -27,33 +32,34 @@
         align-items: center;
         width: 100%;
         margin-top: 40px;
-      }
-      table {
-        width: 500px;
-        border-spacing: 0;
-      }
-      th {
-        background-color: #e6ddd6;
-        border-bottom: 1px solid #e6ddd6;
-      }
-      th:not(:last-child),
-      td:not(:last-child) {
-        border-right: 1px solid #e6ddd6;
-      }
-      th,
-      td {
-        padding: 0.4rem;
-        .link-btn {
-          background-color: #a48b74;
-          color: white;
-          border: none;
-          padding: 0.5rem 1rem;
-          border-radius: 5px;
-          cursor: pointer;
+        table {
+          width: 500px;
+          border-spacing: 0;
         }
-      }
-      .recommend {
-        color: #b6773d;
+        th {
+          background-color: #e6ddd6;
+          border-bottom: 1px solid #e6ddd6;
+          color: #5e4935;
+        }
+        th:not(:last-child),
+        td:not(:last-child) {
+          border-right: 1px solid #e6ddd6;
+        }
+        th,
+        td {
+          padding: 0.4rem;
+          .link-btn {
+            background-color: #a48b74;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+        }
+        .recommend {
+          color: #b6773d;
+        }
       }
 
       .category {
@@ -65,91 +71,91 @@
       .bean-detail {
         position: relative;
         width: 100%;
+        max-width: 800px;
         margin-top: 20px;
         display: flex;
         flex-direction: column;
         gap: 10px;
         justify-content: center;
         align-items: center;
-      }
-
-      .name-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        width: 60%;
-        align-self: flex-start;
-        .code {
-          color: white;
-          background-color: #5e4935;
-          padding: 0.2rem 0.5rem;
-          border-radius: 10px;
-        }
-        .guide-btn {
-          position: absolute;
-          right: 0;
-          button {
-            color: #a48b74;
-            background-color: white;
-            border: solid 1px #a48b74;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-          }
-        }
-      }
-
-      .info-container {
-        background-color: #f5f5f5;
-        padding: 30px;
-        border-radius: 20px;
-        text-align: left;
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        width: 80%;
-
-        .text-info-wrapper {
+        .name-wrapper {
           display: flex;
-          flex-direction: column;
-          gap: 15px;
-          font-size: 1.2rem;
-          .price,
-          .rank,
-          .process {
-            display: flex;
-            gap: 10px;
-            .title {
-              font-weight: 900;
-              color: #5e4935;
-              flex-basis: 35%;
-            }
-            .text {
-              flex-basis: 65%;
+          align-items: center;
+          gap: 5px;
+          width: 60%;
+          align-self: flex-start;
+          .code {
+            color: white;
+            background-color: #5e4935;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+          }
+          .guide-btn {
+            position: absolute;
+            right: 0;
+            button {
+              color: #a48b74;
+              background-color: white;
+              border: solid 1px #a48b74;
+              padding: 0.5rem 1rem;
+              border-radius: 5px;
+              cursor: pointer;
             }
           }
-          .cupping-text {
-            color: #a48b74;
-            font-weight: 900;
-          }
         }
-        .img-info-wrapper {
+
+        .info-container {
+          background-color: #f5f5f5;
+          padding: 30px;
+          border-radius: 20px;
+          text-align: left;
           display: flex;
-          flex-direction: column;
-          gap: 10px;
-          .cupping-text {
+          justify-content: center;
+          gap: 25px;
+          width: 100%;
+
+          .text-info-wrapper {
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 1.2rem;
+            .price,
+            .rank,
+            .process {
+              display: flex;
+              gap: 10px;
+              .title {
+                font-weight: 700;
+                color: #5e4935;
+                flex-basis: 35%;
+              }
+              .text {
+                flex-basis: 65%;
+              }
+            }
+            .cupping-text {
+              color: #a48b74;
+              font-weight: 700;
+            }
           }
-          .cupping-imgs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px; /* 이미지 사이의 간격 */
-            img {
-              width: 100%;
-              height: 100px;
-              object-fit: cover;
-              border-radius: 10px;
+          .img-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .cupping-text {
+              display: flex;
+              gap: 10px;
+            }
+            .cupping-imgs {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 15px; /* 이미지 사이의 간격 */
+              img {
+                width: 100%;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 10px;
+              }
             }
           }
         }
@@ -433,7 +439,7 @@
         // 카테고리 제목을 담을 div 요소를 생성합니다.
         const categoryDiv = document.createElement("div");
         categoryDiv.className = "category";
-        categoryDiv.innerHTML = `<h2 class="category">${category}</h2>`;
+        categoryDiv.innerHTML = `<h1 class="category">${category}</h1>`;
         document.body.appendChild(categoryDiv);
         BEANS[category].forEach((bean) => {
           // 원두 상세 정보를 담을 div 요소를 생성합니다.
@@ -466,6 +472,7 @@
 
           // 각 이미지 URL에 대해 img 요소를 생성하고 cuppingImgsDiv에 추가합니다.
           imageUrls.forEach((url) => {
+            if (!url) return;
             const img = document.createElement("img");
             img.src = url;
             img.alt = "이미지 설명";
