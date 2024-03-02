@@ -78,87 +78,88 @@
         gap: 10px;
         justify-content: center;
         align-items: center;
-        .name-wrapper {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          width: 60%;
-          align-self: flex-start;
-          .code {
-            color: white;
-            background-color: #5e4935;
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
-          }
-          .guide-btn {
-            position: absolute;
-            right: 0;
-            button {
-              color: #a48b74;
-              background-color: white;
-              border: solid 1px #a48b74;
-              padding: 0.5rem 1rem;
-              border-radius: 5px;
-              cursor: pointer;
-            }
+      }
+      .name-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        width: 60%;
+        align-self: flex-start;
+        .code {
+          color: white;
+          background-color: #5e4935;
+          padding: 0.2rem 0.5rem;
+          border-radius: 10px;
+        }
+        .guide-btn {
+          position: absolute;
+          right: 0;
+          button {
+            color: #a48b74;
+            background-color: white;
+            border: solid 1px #a48b74;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
           }
         }
+      }
 
-        .info-container {
-          background-color: #f5f5f5;
-          padding: 30px;
-          border-radius: 20px;
-          text-align: left;
-          display: flex;
-          justify-content: center;
-          gap: 25px;
-          width: 80%;
+      .info-container {
+        background-color: #f5f5f5;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: left;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        width: 80%;
+      }
+      .text-info-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-size: 1.2rem;
+      }
+      .price,
+      .rank,
+      .process {
+        display: flex;
+        gap: 10px;
+      }
+      .title {
+        font-weight: 700;
+        color: #5e4935;
+        flex-basis: 35%;
+      }
+      .text {
+        flex-basis: 65%;
+      }
 
-          .text-info-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            font-size: 1.2rem;
-            .price,
-            .rank,
-            .process {
-              display: flex;
-              gap: 10px;
-              .title {
-                font-weight: 700;
-                color: #5e4935;
-                flex-basis: 35%;
-              }
-              .text {
-                flex-basis: 65%;
-              }
-            }
-            .cupping-text {
-              color: #a48b74;
-              font-weight: 700;
-            }
-          }
-          .img-info-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            .cupping-text {
-              display: flex;
-              gap: 10px;
-            }
-            .cupping-imgs {
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 15px; /* 이미지 사이의 간격 */
-              img {
-                width: 100%;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 10px;
-              }
-            }
-          }
-        }
+      .cupping-text {
+        color: #a48b74;
+        font-weight: 700;
+      }
+
+      .img-info-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .cupping-text {
+        display: flex;
+        gap: 10px;
+      }
+      .cupping-imgs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px; /* 이미지 사이의 간격 */
+      }
+      img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
       }
 
       @media (max-width: 767px) {
