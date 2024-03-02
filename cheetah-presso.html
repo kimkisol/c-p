@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cheetah Presso</title>
+    <style>
+      @font-face {
+        font-family: "Pretendard-Regular";
+        src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+          format("woff");
+        font-style: normal;
+      }
+
+      body {
+        font-family: "Pretendard-Regular", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .guide-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      table {
+        width: 500px;
+        border-spacing: 0;
+      }
+      th {
+        background-color: #e6ddd6;
+        border-bottom: 1px solid #e6ddd6;
+      }
+      th:not(:last-child),
+      td:not(:last-child) {
+        border-right: 1px solid #e6ddd6;
+      }
+      th,
+      td {
+        padding: 0.4rem;
+        .recommend {
+          color: #b6773d;
+        }
+        .link-btn {
+          background-color: #a48b74;
+          color: white;
+          border: none;
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+
+      .category {
+        margin-top: 50px;
+        font-size: 2rem;
+        color: #5e4935;
+      }
+
+      .bean-detail {
+        position: relative;
+        width: 80%;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .name-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+        .code {
+          color: white;
+          background-color: #5e4935;
+          padding: 0.2rem 0.5rem;
+          border-radius: 10px;
+        }
+        .guide-btn {
+          position: absolute;
+          right: 0;
+          button {
+            color: #a48b74;
+            background-color: white;
+            border: solid 1px #a48b74;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .info-container {
+        text-align: left;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 10px;
+        width: 100%;
+
+        .text-info-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          font-size: 1.2rem;
+          .price,
+          .rank,
+          .process {
+            display: flex;
+            gap: 10px;
+            .title {
+              font-weight: 900;
+              color: #5e4935;
+              flex-basis: 35%;
+            }
+            .text {
+              flex-basis: 65%;
+            }
+          }
+          .cupping-text {
+            color: #a48b74;
+            font-weight: 900;
+          }
+        }
+        .img-info-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .cupping-text {
+            display: flex;
+            gap: 10px;
+          }
+          .cupping-imgs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px; /* 이미지 사이의 간격 */
+            img {
+              width: 140px;
+              height: 100px;
+              object-fit: cover;
+              border-radius: 10px;
+              box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="choice-guide">원두 선택 가이드</h1>
+    <script>
+      const CUPPING_IMG = {
+        감귤: "https://github.com/kimkisol/c-p/raw/main/oranges-1995079_1280.jpeg",
+        건포도:
+          "https://github.com/kimkisol/c-p/raw/main/raisin-2772204_1280.jpeg",
+        검은콩:
+          "https://github.com/kimkisol/c-p/raw/main/black-beans-14522_640.jpeg",
+        군고구마:
+          "https://github.com/kimkisol/c-p/raw/main/sweet-potato-1804451_1280.jpeg",
+        군밤: "https://github.com/kimkisol/c-p/raw/main/chestnuts-7660528_1280.jpeg",
+        귤: "https://github.com/kimkisol/c-p/raw/main/tangerines-1721633_1280.jpeg",
+        다크초콜릿:
+          "https://github.com/kimkisol/c-p/raw/main/chocolate-3294455_1280.jpeg",
+        단감: "https://github.com/kimkisol/c-p/raw/main/persimmon-1914127_1280.jpeg",
+        레드베리:
+          "https://github.com/kimkisol/c-p/raw/main/apple-berry-3745018_1280.jpeg",
+        맥아: "https://github.com/kimkisol/c-p/raw/main/cereal-4217883_1280.jpeg",
+        메이플시럽:
+          "https://github.com/kimkisol/c-p/raw/main/pancake-7169681_1280.jpeg",
+        몰트: "https://github.com/kimkisol/c-p/raw/main/cereal-4217883_1280.jpeg",
+        바닐라:
+          "https://github.com/kimkisol/c-p/raw/main/ice-cream-1440830_1280.jpeg",
+        밤껍질:
+          "https://github.com/kimkisol/c-p/raw/main/chestnuts-2804023_1280.jpeg",
+        볶은콩:
+          "https://github.com/kimkisol/c-p/raw/main/coffee-5149246_1280.jpeg",
+        블랙베리:
+          "https://github.com/kimkisol/c-p/raw/main/ripe-blackberry-4375664_1280.jpeg",
+        블루베리:
+          "https://github.com/kimkisol/c-p/raw/main/blueberries-3460423_1280.jpeg",
+        사탕수수:
+          "https://github.com/kimkisol/c-p/raw/main/sugarcane-5388628_1280.jpeg",
+        시리얼:
+          "https://github.com/kimkisol/c-p/raw/main/breakfast-5132879_1280.jpeg",
+        아몬드:
+          "https://github.com/kimkisol/c-p/raw/main/almonds-1768792_1280.jpeg",
+        오렌지:
+          "https://github.com/kimkisol/c-p/raw/main/oranges-1117628_1280.jpeg",
+        초콜릿:
+          "https://github.com/kimkisol/c-p/raw/main/chocolate-968457_1280.jpeg",
+        카라멜:
+          "https://github.com/kimkisol/c-p/raw/main/yorkshire-2945345_1280.jpeg",
+        카카오:
+          "https://github.com/kimkisol/c-p/raw/main/cacao-3995994_1280.jpeg",
+        크린베리:
+          "https://github.com/kimkisol/c-p/raw/main/cranberry-957583_1280.jpeg",
+        토마토:
+          "https://github.com/kimkisol/c-p/raw/main/tomatoes-1561565_1280.jpeg",
+        플로럴:
+          "https://github.com/kimkisol/c-p/raw/main/spring-flowers-110671_1280.jpeg",
+        피칸: "https://github.com/kimkisol/c-p/raw/main/pecans-1214697_1280.jpeg",
+        호두: "https://github.com/kimkisol/c-p/raw/main/walnuts-1739021_1280.jpeg",
+      };
+
+      const BEANS = {
+        KENYA: [
+          {
+            code: "A1",
+            name: "케냐AA",
+            price: {
+              200: 15000,
+              500: 42000,
+            },
+            rank: "TOP",
+            process: "washed",
+            recommend: "깊고 향미가 풍부한",
+            cupping: ["다크초콜릿", "군밤", "메이플시럽", "귤", "단감"],
+          },
+          {
+            code: "A2",
+            name: "케냐AB",
+            price: {
+              200: 8000,
+              500: 20000,
+            },
+            rank: null,
+            process: "washed",
+            recommend: "고소한",
+            cupping: ["맥아", "호두", "감귤", "다크초콜릿", "카라멜"],
+          },
+          {
+            code: "A3",
+            name: "케냐AB",
+            price: {
+              200: 12000,
+            },
+            rank: "TOP",
+            process: "washed",
+            recommend: "고소한",
+            cupping: ["피칸", "맥아", "호두", "감귤", "다크초콜릿", "카라멜"],
+          },
+          {
+            code: "A4",
+            name: "케냐AA",
+            price: {
+              200: 10000,
+            },
+            rank: "FAQ",
+            process: "washed",
+            recommend: "고소한",
+            cupping: ["피칸", "맥아", "호두", "감귤", "다크초콜릿", "카라멜"],
+          },
+          {
+            code: "A5",
+            name: "케냐PB",
+            price: {
+              200: 16000,
+            },
+            rank: "PB",
+            process: "washed",
+            recommend: "라떼로 먹기 좋은",
+            cupping: ["단감", "바닐라", "토마토", "군고구마", "초콜릿"],
+          },
+        ],
+        DECAFFEIEN: [
+          {
+            code: "Y1",
+            name: "케냐AA FAQ",
+            price: {
+              200: 17000,
+            },
+            rank: "FAQ",
+            process: "SWDECAFF / 워시드",
+            recommend: "부드럽고 가벼운",
+            cupping: ["카카오", "오렌지", "볶은콩", "사탕수수"],
+          },
+          {
+            code: "Y2",
+            name: "브라질",
+            price: {
+              200: 13000,
+            },
+            rank: null,
+            process: "코리아워터",
+            recommend: "달콤한",
+            cupping: ["볶은콩", "메이플시럽", "초콜릿"],
+          },
+          {
+            code: "Y3",
+            name: "에티오피아 G1 예가체프 첼바 워시드",
+            price: {
+              200: 22000,
+            },
+            rank: "FAQ",
+            process: "SWDECAFF / 워시드",
+            recommend: "산미가 있고 과일향",
+            cupping: ["귤", "검은콩", "군밤", "시리얼", "몰트", "밤껍질"],
+          },
+        ],
+        ETHIOPIA: [
+          {
+            code: "B1",
+            name: "에티오피아 단세 모모라",
+            price: {
+              200: 15000,
+            },
+            rank: "G1",
+            process: "natural",
+            recommend: "깊고 향미가 풍부한",
+            cupping: ["플로럴", "레드베리", "건포도", "아몬드", "초콜릿"],
+          },
+          {
+            code: "B2",
+            name: "에티오피아 G2 예가체프",
+            price: {
+              200: 10000,
+              500: 23000,
+            },
+            rank: "G2",
+            process: "natural",
+            recommend: "산미가 있고 과일향",
+            cupping: ["블랙베리", "카카오", "오렌지", "크린베리"],
+          },
+          {
+            code: "B3",
+            name: "에티오피아 G1 예가체프 첼바 내츄럴",
+            price: {
+              200: 15000,
+            },
+            rank: "G1",
+            process: "natural",
+            recommend: "깊고 향미가 풍부한",
+            cupping: ["플로럴", "블루베리", "귤", "아몬드", "초콜릿"],
+          },
+        ],
+        COLDBREW: [
+          {
+            code: "Z1",
+            name: "케냐AA",
+            price: {
+              500: 15000,
+            },
+            rank: null,
+            process: null,
+            recommend: "깊고 향미가 풍부한",
+            cupping: ["다크초콜릿", "군밤", "메이플시럽", "귤", "단감"],
+          },
+        ],
+      };
+
+      function generateHTMLForBeans(categorizedBeans) {
+        let html = "";
+
+        // 각 추천 유형별로 HTML 생성
+        for (const [recommendation, beans] of Object.entries(
+          categorizedBeans
+        )) {
+          // 추천 유형별 제목
+          html += `<div class="guide-wrapper">\n`;
+          html += `  <h3 id="${recommendation}"><span class="recommend">${recommendation}</span> 커피를 원하시는 분</h3>\n`;
+          html += `  <table>\n`;
+          html += `    <tr>\n`;
+          html += `      <th>코드</th>\n`;
+          html += `      <th>원두</th>\n`;
+          html += `      <th>가격</th>\n`;
+          html += `      <th>click</th>\n`;
+          html += `    </tr>\n`;
+
+          // 해당 추천 유형의 커피 목록
+          beans.forEach((bean) => {
+            const price = Object.values(bean.price)
+              .map((price) => price.toLocaleString("ko-KR"))
+              .join(" / ");
+            html += `    <tr>\n`;
+            html += `      <td width="10%">${bean.code}</td>\n`;
+            html += `      <td width="50%">${bean.name}</td>\n`;
+            html += `      <td width="20%">${price}</td>\n`;
+            html += `      <td width="20%"><a href="#${bean.code}"><button class="link-btn">보러가기</button></a></td>\n`;
+            html += `    </tr>\n`;
+          });
+
+          html += `  </table>\n`;
+          html += `</div>\n`;
+        }
+
+        return html;
+      }
+
+      const categorizedByRecommendation = {};
+
+      // BEANS 객체의 각 카테고리를 순회합니다.
+      Object.keys(BEANS).forEach((category) => {
+        BEANS[category].forEach((bean) => {
+          // 현재 콩의 추천 유형을 가져옵니다.
+          const recommendation = bean.recommend;
+
+          // 해당 추천 유형에 대한 배열이 이미 존재하는지 확인합니다.
+          // 존재하지 않으면 새 배열을 생성합니다.
+          if (!categorizedByRecommendation[recommendation]) {
+            categorizedByRecommendation[recommendation] = [];
+          }
+
+          // 현재 콩을 해당 추천 유형의 배열에 추가합니다.
+          categorizedByRecommendation[recommendation].push(bean);
+        });
+      });
+
+      const htmlOutput = generateHTMLForBeans(categorizedByRecommendation);
+      document.body.innerHTML += htmlOutput;
+
+      // BEANS 객체를 순회하면서 각 카테고리의 원두들에 대한 HTML을 생성합니다.
+      Object.keys(BEANS).forEach((category) => {
+        // 카테고리 제목을 담을 div 요소를 생성합니다.
+        const categoryDiv = document.createElement("div");
+        categoryDiv.className = "category";
+        categoryDiv.innerHTML = `<h2 class="category">${category}</h2>`;
+        document.body.appendChild(categoryDiv);
+        BEANS[category].forEach((bean) => {
+          // 원두 상세 정보를 담을 div 요소를 생성합니다.
+          const beanDetailDiv = document.createElement("div");
+          beanDetailDiv.className = "bean-detail";
+
+          // 원두 이름과 코드를 포함하는 div를 생성합니다.
+          const nameWrapperDiv = document.createElement("div");
+          nameWrapperDiv.className = "name-wrapper";
+          nameWrapperDiv.innerHTML = `
+        <div class="code">${bean.code}</div>
+        <h2 class="name">${bean.name}</h2>
+        <a class="guide-btn" href="#choice-guide"><button>가이드 보러가기</button></a>
+      `;
+          const infoContainerDiv = document.createElement("div");
+          infoContainerDiv.className = "info-container";
+          // 컵핑 이미지를 포함하는 div를 생성합니다.
+          const imgInfoWrapperDiv = document.createElement("div");
+          imgInfoWrapperDiv.className = "img-info-wrapper";
+          const cuppingImgsDiv = document.createElement("div");
+          cuppingImgsDiv.className = "cupping-imgs";
+
+          // 이미지 주소 배열을 정의합니다. 실제로는 bean.cupping에 따른 이미지 매핑 로직이 필요합니다.
+          const imageUrls = [
+            CUPPING_IMG[bean.cupping[0]],
+            CUPPING_IMG[bean.cupping[1]],
+            CUPPING_IMG[bean.cupping[2]],
+            CUPPING_IMG[bean.cupping[3]],
+          ];
+
+          // 각 이미지 URL에 대해 img 요소를 생성하고 cuppingImgsDiv에 추가합니다.
+          imageUrls.forEach((url) => {
+            const img = document.createElement("img");
+            img.src = url;
+            img.alt = "이미지 설명";
+            img.id = bean.code;
+            cuppingImgsDiv.appendChild(img);
+          });
+
+          imgInfoWrapperDiv.appendChild(cuppingImgsDiv);
+
+          // 텍스트 정보를 포함하는 div를 생성합니다.
+          const textInfoWrapperDiv = document.createElement("div");
+          textInfoWrapperDiv.className = "text-info-wrapper";
+          textInfoWrapperDiv.innerHTML = `
+        <div class="price"><span class="title">가격/중량</span><span class="text">${
+          bean.price[200] ? `200g: ${bean.price[200]}원` : ""
+        } ${bean.price[500] ? `500g: ${bean.price[500]}원` : ""}</span></div>
+        </span></div>
+        <div class="rank"><span class="title">등급</span><span class="text">${
+          bean.rank || "-"
+        }</span></div>
+        <div class="process"><span class="title">가공 방식</span><span class="text">${
+          bean.process || "-"
+        }</span></div>
+        <div class="cupping-text">#${bean.cupping.join(" #")}</div>
+      `;
+
+          // 최종적으로 beanDetailDiv에 모든 세부 div를 추가합니다.
+          beanDetailDiv.appendChild(nameWrapperDiv);
+          infoContainerDiv.appendChild(imgInfoWrapperDiv);
+          infoContainerDiv.appendChild(textInfoWrapperDiv);
+          beanDetailDiv.appendChild(infoContainerDiv);
+
+          // container에 최종 div를 추가합니다.
+          document.body.appendChild(beanDetailDiv);
+        });
+      });
+    </script>
+  </body>
+</html>
