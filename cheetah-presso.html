@@ -287,11 +287,14 @@
           display: flex;
           flex-direction: column;
         }
+        .title,
+        .cupping-text,
+        .cupping-graph-label,
+        .text {
+          font-size: 16px !important;
+        }
         .text-info-wrapper {
-          padding: 40px 20px 70px 20px !important;
-          .bean-detail-info-container {
-            font-size: 0.8rem !important;
-          }
+          padding: 40px 20px 80px 20px !important;
           .guide-btn {
             left: 50% !important;
             bottom: 20px !important;
@@ -639,7 +642,7 @@
               <div class="info-circle process"><span class="title">등급</span><div class="circle icon2"></div><span class="text">${
                 bean.rank || "-"
               }</span></div>
-              <div class="info-circle rank"><span class="title">가공 방식</span><div class="circle icon3"></div><span class="text">${
+              <div class="info-circle rank"><span class="title">가공방식</span><div class="circle icon3"></div><span class="text">${
                 bean.process || "-"
               }</span></div>
               <div class="info-circle process"><span class="title">지역</span><div class="circle icon4"></div><span class="text">${"-"}</span></div>
